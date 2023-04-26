@@ -9,7 +9,7 @@ print "</head>";
 print "<body>";
 
 print "<h1>Leon was here - Hello, Perl!</h1>";
-print "<p>This page was generated with the Perl programming langauge</p>";
+print "<p>This page was generated with the Perl programming language</p>";
 
 $date = localtime();
 print "<p>Current Time: $date</p>";
