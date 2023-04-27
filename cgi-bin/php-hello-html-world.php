@@ -2,6 +2,7 @@
 header("Cache-Control: no-cache");
 header("Content-type: text/html");
 ?>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Hello, PHP!</title>
