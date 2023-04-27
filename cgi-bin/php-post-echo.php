@@ -5,18 +5,21 @@ header("Content-type: text/html");
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GET Request Echo</title>
+    <title>POST Request Echo</title>
   </head>
   <body>
-    <h1 align='center'>GET Request Echo</h1>
+    <h1 align='center'>POST Request Echo</h1>
     <hr>
-    <b>Query String:</b> <?php echo $_SERVER['QUERY_STRING']; ?> <br />
 
+    <b>Message Body:</b><br />
+    <ul>
 <?php
-	foreach ($_GET as $key => $value) {
+	foreach ($_POST as $key => $value) {
+	    echo "<li>";
 	    echo htmlspecialchars("$key = $value");
-	    echo "<br/>\n";
+	    echo "</li>\n";
 	}
 ?>
+    </ul>
   </body>
 </html>
