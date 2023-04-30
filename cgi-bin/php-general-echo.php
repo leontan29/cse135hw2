@@ -13,9 +13,9 @@ header("Content-type: text/html");
 
     <p><b>HTTP Protocol:</b> <?php echo $_SERVER['SERVER_PROTOCOL']; ?></p>
     <p><b>HTTP Method:</b> <?php echo $_SERVER['REQUEST_METHOD']; ?></p>
-    <p>
-      <b>Query:</b>
-      <ul>
+
+    <p><b>Query:</b></p>
+    <ul>
 <?php
 	foreach ($_GET as $key => $value) {
 	    echo "<li>";
@@ -23,11 +23,10 @@ header("Content-type: text/html");
 	    echo "</li>\n";
 	}
 ?>
-      </ul>
-    </p>
-    <p>
-      <b>Message Body:</b><br />
-      <ul>
+    </ul>
+
+    <p><b>Message Body:</b></p>
+    <ul>
 <?php
 	foreach ($_POST as $key => $value) {
 	    echo "<li>";
@@ -35,7 +34,6 @@ header("Content-type: text/html");
 	    echo "</li>\n";
 	}
 ?>
-      </ul>
-    </p>
+    </ul>
   </body>
 </html>
