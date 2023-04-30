@@ -1,10 +1,10 @@
 <?php
   session_start();
   $name = $_SESSION['username'];
-  if (!$name) {
-    $name = $_POST['username'];
-    $_SESSION['username'] = $name;
+  if ($_POST['username']) {
+    $_SESSION['username'] = $_POST['username'];
   }
+  $name = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html>
