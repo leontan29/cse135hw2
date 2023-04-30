@@ -13,24 +13,29 @@ header("Content-type: text/html");
 
     <p><b>HTTP Protocol:</b> <?php echo $_SERVER['SERVER_PROTOCOL']; ?></p>
     <p><b>HTTP Method:</b> <?php echo $_SERVER['REQUEST_METHOD']; ?></p>
-    <p><b>Query String:</b> <?php echo $_SERVER['QUERY_STRING']; ?></p>
-    <b>Message Body:</b><br />
-    <ul>
+    <p>
+      <b>Query:</b>
+      <ul>
 <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	foreach ($_POST as $key => $value) {
-	    echo "<li>";
-	    echo htmlspecialchars("$key = $value");
-	    echo "</li>\n";
-	}
-    } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	foreach ($_GET as $key => $value) {
 	    echo "<li>";
 	    echo htmlspecialchars("$key = $value");
 	    echo "</li>\n";
 	}
-    }
 ?>
-    </ul>
+      </ul>
+    </p>
+    <p>
+      <b>Message Body:</b><br />
+      <ul>
+<?php
+	foreach ($_POST as $key => $value) {
+	    echo "<li>";
+	    echo htmlspecialchars("$key = $value");
+	    echo "</li>\n";
+	}
+?>
+      </ul>
+    </p>
   </body>
 </html>
