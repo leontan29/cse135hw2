@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char **argv, char **envp)
-{
+int main(int argc, char **argv, char **envp) {
   // Headers
   printf("Cache-Control: no-cache\n");
   printf("Set-Cookie: destroyed\n");

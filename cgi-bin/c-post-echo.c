@@ -1,8 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-int main(int argc, char **argv, char **envp)
-{
+int main(int argc, char **argv, char **envp) {
   char str[1000];
   // Print HTML header
   printf("Cache-Control: no-cache\n");
