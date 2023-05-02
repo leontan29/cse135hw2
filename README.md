@@ -27,3 +27,7 @@ To access the site:
 	- username: myta
 	- password: hellothere
 
+To access the machine:
+
+	- username: grader
+	- password: Grader,135
