@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Leon Tan</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <!-- add some javascript -->
+<script type="text/javascript">
+var images = new Array();
+function preloadImages(){
+    for (i=0; i < preloadImages.arguments.length; i++){
+       images[i] = new Image();
+       images[i].src = preloadImages.arguments[i];
+    }
+}
+preloadImages("leon.jpg");
+</script>
+
+  </head>
+  <body>
+    <h1>Leon Tan</h1>
+    <img src="leon.jpg" alt="My Pic" style='width: 25em'>
+    <p>Welcome!</p>
+  </body>
+</html>

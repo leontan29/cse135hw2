@@ -22,12 +22,7 @@ project to `/var/www` locally assuming that apache serves pages out of
 Password
 --
 
-To access the site:
-
-	- username: myta
-	- password: hellothere
-
-To access the machine:
+To access the site or machine:
 
 	- username: grader
 	- password: Grader,135
