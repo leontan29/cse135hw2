@@ -48,16 +48,16 @@ HW1 Links
          github to `/var/www` locally assuming that apacheserves pages
 	 out of `/var/www`.
 
-8. User/password: please use grader/Grader,135
+8. *Username/password*: please use grader/Grader,135
 
-9. After enabling mod-deflate in apache2, when we curl with header `Accept-Encoding: gzip`,
-   we see reply from the server with `Content-Encoding: gzip`, and we can verify that
-   that the `Content-Length` is smaller than the size of the html file requested.
-   [Screenshot](http://cse135byleon.site/screenshots.hw1/compression-verify.png)
+9. After enabling mod-deflate in apache2, we curl with header
+   `Accept-Encoding: gzip`. Look for `Content-Encoding: gzip` in HTTP
+   reply header from the server in this
+   [screenshot](http://cse135byleon.site/screenshots.hw1/compression-verify.png).
 
-10. I made changes to `apache2.conf` to return a different `Server` header.
-   [Screenshot](http://cse135byleon.site/screenshots.hw1/header-verify.png)
-
+10. I made changes to `apache2.conf` to return a different `Server`
+   header.  Look for `Server: CSE135 Server` in the
+   [screenshot](http://cse135byleon.site/screenshots.hw1/header-verify.png).
 
 11. [initial-index](http://cse135byleon.site/screenshots.hw1/initial-index.jpg)
 
