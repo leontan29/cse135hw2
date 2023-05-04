@@ -42,6 +42,7 @@ To access the site or machine:
 * [c-destroy-session.png](http://cse135byleon.site/screenshots.hw2/c-destroy-session.png)
 
 * [php-hello-html-world.png](http://cse135byleon.site/screenshots.hw2/php-hello-html-world.png)
+
 * [php-hello-json-world.png](http://cse135byleon.site/screenshots.hw2/php-hello-json-world.png)
 * [php-env.png](http://cse135byleon.site/screenshots.hw2/php-env.png)
 * [php-get-echo.png](http://cse135byleon.site/screenshots.hw2/php-get-echo.png)
@@ -67,7 +68,29 @@ To access the site or machine:
 
 * [logrocket](http://cse135byleon.site/screenshots.hw2/logrocket.png)
 
+### Source
 
+* [php-URL-sessions-1.php.txt](http:/cse135byleon.site/src/php-URL-sessions-1.php.txt)
+* [php-URL-sessions-2.php.txt](http:/cse135byleon.site/src/php-URL-sessions-2.php.txt)
+* [php-cookie-sessions-1.php.txt](http:/cse135byleon.site/src/php-cookie-sessions-1.php.txt)
+* [php-cookie-sessions-2.php.txt](http:/cse135byleon.site/src/php-cookie-sessions-2.php.txt)
+* [php-destroy-URL-session.php.txt](http:/cse135byleon.site/src/php-destroy-URL-session.php.txt)
+* [php-destroy-cookie-session.php.txt](http:/cse135byleon.site/src/php-destroy-cookie-session.php.txt)
+* [php-env.php.txt](http:/cse135byleon.site/src/php-env.php.txt)
+* [php-general-echo.php.txt](http:/cse135byleon.site/src/php-general-echo.php.txt)
+* [php-get-echo.php.txt](http:/cse135byleon.site/src/php-get-echo.php.txt)
+* [php-hello-html-world.php.txt](http:/cse135byleon.site/src/php-hello-html-world.php.txt)
+* [php-hello-json-world.php.txt](http:/cse135byleon.site/src/php-hello-json-world.php.txt)
+* [php-post-echo.php.txt](http:/cse135byleon.site/src/php-post-echo.php.txt)
+* [py-destroy-session.py.txt](http:/cse135byleon.site/src/py-destroy-session.py.txt)
+* [py-env.py.txt](http:/cse135byleon.site/src/py-env.py.txt)
+* [py-general-echo.py.txt](http:/cse135byleon.site/src/py-general-echo.py.txt)
+* [py-get-echo.py.txt](http:/cse135byleon.site/src/py-get-echo.py.txt)
+* [py-hello-html-world.py.txt](http:/cse135byleon.site/src/py-hello-html-world.py.txt)
+* [py-hello-json-world.py.txt](http:/cse135byleon.site/src/py-hello-json-world.py.txt)
+* [py-post-echo.py.txt](http:/cse135byleon.site/src/py-post-echo.py.txt)
+* [py-sessions-1.py.txt](http:/cse135byleon.site/src/py-sessions-1.py.txt)
+* [py-sessions-2.py.txt](http:/cse135byleon.site/src/py-sessions-2.py.txt)
 
 ## HW1
 
@@ -116,7 +139,7 @@ To access the site or machine:
 * [SSL-verify](http://cse135byleon.site/screenshots.hw1/SSL-verify.png)
 
 * I elected not to use github deploy. Instead, I used a simple shell script to rsync
-    my repo to /var/www.
+    my repo to `/var/www`.
 
 * [php-verification](http://cse135byleon.site/screenshots.hw1/php-verification.jpg)
 
