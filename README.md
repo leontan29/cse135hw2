@@ -59,7 +59,7 @@ HW1 Links
    [Screenshot](http://cse135byleon.site/screenshots.hw1/header-verify.png)
 
 
-11. initial-index.jpg -- MISSING SCREENSHOT
+11. [initial-index](http://cse135byleon.site/screenshots.hw1/initial-index.jpg)
 
 12. [modified-index](http://cse135byleon.site/screenshots.hw1/modified-index.png)
 
