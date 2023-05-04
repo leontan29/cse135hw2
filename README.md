@@ -53,33 +53,33 @@ HW1 Links
 9. After enabling mod-deflate in apache2, when we curl with header `Accept-Encoding: gzip`,
    we see reply from the server with `Content-Encoding: gzip`, and we can verify that
    that the `Content-Length` is smaller than the size of the html file requested.
-   [Screenshot](http://cse135byleon.site/screenshot.hw1/compression-verify.png)
+   [Screenshot](http://cse135byleon.site/screenshots.hw1/compression-verify.png)
 
 10. I made changes to `apache2.conf` to return a different `Server` header.
-   [Screenshot](http://cse135byleon.site/screenshot.hw1/header-verify.png)
+   [Screenshot](http://cse135byleon.site/screenshots.hw1/header-verify.png)
 
 
 11. initial-index.jpg -- MISSING SCREENSHOT
 
-12. [modified-index](http://cse135byleon.site/screenshot.hw1/modified-index.png)
+12. [modified-index](http://cse135byleon.site/screenshots.hw1/modified-index.png)
 
-13. [validator-initial](http://cse135byleon.site/screenshot.hw1/validator-initial.png)
+13. [validator-initial](http://cse135byleon.site/screenshots.hw1/validator-initial.png)
 
-14. [vhosts-verify](http://cse135byleon.site/screenshot.hw1/vhosts-verify.png)
+14. [vhosts-verify](http://cse135byleon.site/screenshots.hw1/vhosts-verify.png)
 
-15. [SSL-verify](http://cse135byleon.site/screenshot.hw1/SSL-verify.png)
+15. [SSL-verify](http://cse135byleon.site/screenshots.hw1/SSL-verify.png)
 
 16. I elected not to use github deploy. Instead, I used a simple shell script to rsync
     my repo to /var/www.
 
-17. [php-verification](http://cse135byleon.site/screenshot.hw1/php-verification.jpg)
+17. [php-verification](http://cse135byleon.site/screenshots.hw1/php-verification.jpg)
 
-18. [compress-verify](http://cse135byleon.site/screenshot.hw1/compress-verify.png)
+18. [compress-verify](http://cse135byleon.site/screenshots.hw1/compress-verify.png)
 
-19. [header-verify](http://cse135byleon.site/screenshot.hw1/header-verify.png)
+19. [header-verify](http://cse135byleon.site/screenshots.hw1/header-verify.png)
 
-20. [error-page](http://cse135byleon.site/screenshot.hw1/error-page.png)
+20. [error-page](http://cse135byleon.site/screenshots.hw1/error-page.png)
 
-21. [log-verification](http://cse135byleon.site/screenshot.hw1/log-verification.png)
+21. [log-verification](http://cse135byleon.site/screenshots.hw1/log-verification.png)
 
-21. [report-verification](http://cse135byleon.site/screenshot.hw1/report-verification.png)
+21. [report-verification](http://cse135byleon.site/screenshots.hw1/report-verification.png)
