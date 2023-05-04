@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char **argv, char **envp)
-{
+int main(int argc, char **argv, char **envp) {
   // Headers
   printf("Cache-Control: no-cache\n");
   printf("Content-type: text/html\n\n");
@@ -15,12 +14,10 @@ int main(int argc, char **argv, char **envp)
   printf("<h1>C Sessions Page 2</h1>");
   printf("<table>");
 
-  if (getenv("HTTP_COOKIE") != NULL && strcmp(getenv("HTTP_COOKIE"), "destroyed"))
-  {
+  if (getenv("HTTP_COOKIE") != NULL &&
+      strcmp(getenv("HTTP_COOKIE"), "destroyed")) {
     printf("<tr><td>Cookie:</td><td>%s</td></tr>\n", getenv("HTTP_COOKIE"));
-  }
-  else
-  {
+  } else {
     printf("<tr><td>Cookie:</td><td>None</td></tr>\n");
   }
 

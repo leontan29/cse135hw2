@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char **argv, char **envp)
-{
+int main(int argc, char **argv, char **envp) {
   // Headers
   printf("Cache-Control: no-cache\n");
 
@@ -13,19 +12,15 @@ int main(int argc, char **argv, char **envp)
 
   // Check to see if a proper name was sent
   char *name = "";
-  if (username[0] == 'u')
-  {
+  if (username[0] == 'u') {
     name = username + 9;
   }
 
   // Set the cookie using a header, add extra \n to end headers
-  if (strlen(name) > 0)
-  {
+  if (strlen(name) > 0) {
     printf("Content-type: text/html\n");
     printf("Set-Cookie: %s\n\n", name);
-  }
-  else
-  {
+  } else {
     printf("Content-type: text/html\n\n");
   }
 
@@ -37,16 +32,12 @@ int main(int argc, char **argv, char **envp)
   printf("<table>");
 
   // First check for new Cookie, then Check for old Cookie
-  if (strlen(name) > 0)
-  {
+  if (strlen(name) > 0) {
     printf("<tr><td>Cookie:</td><td>%s</td></tr>\n", name);
-  }
-  else if (getenv("HTTP_COOKIE") != NULL && strcmp(getenv("HTTP_COOKIE"), "destroyed"))
-  {
+  } else if (getenv("HTTP_COOKIE") != NULL &&
+             strcmp(getenv("HTTP_COOKIE"), "destroyed")) {
     printf("<tr><td>Cookie:</td><td>%s</td></tr>\n", getenv("HTTP_COOKIE"));
-  }
-  else
-  {
+  } else {
     printf("<tr><td>Cookie:</td><td>None</td></tr>\n");
   }
 
