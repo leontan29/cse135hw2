@@ -97,11 +97,11 @@ To access the site or machine:
 
 * [Home Page](http://cse135byleon.site/)
 
-* [About Page for Leon Tan](http://cse135byleon/members/leontan.html)
+* [About Page for Leon Tan](http://cse135byleon.site/members/leontan.html)
 
 * [Favicon](http://cse135byleon.site/favicon.ico)
 
-* [Robots.txt](http://cse135byleon.site/rebots.txt)
+* [Robots.txt](http://cse135byleon.site/robots.txt)
 
 * [Hello PHP](http://cse135byleon.site/hello.php)
 
