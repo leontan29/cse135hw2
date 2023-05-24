@@ -1,0 +1,24 @@
+[
+    {
+	"id": 1,
+      "name": "John Doe",
+      "phone": "+1234567890",
+      "email": "johndoe@example.com",
+      "address": "123 Main Street, San Francisco, CA, 94102"
+    },
+    {
+	"id": 2,
+      "name": "Jane Smith",
+      "phone": "+0987654321",
+      "email": "janesmith@example.com",
+      "address": "456 Elm Street, San Francisco, CA, 94110"
+    },
+    {
+	"id": 3,
+      "name": "Alice Johnson",
+      "phone": "+9876543210",
+      "email": "alicejohnson@example.com",
+      "address": "789 Oak Street, San Francisco, CA, 94112"
+    }
+]
+
