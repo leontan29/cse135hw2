@@ -1,13 +1,10 @@
 
 // send a packet of data to endpoint
 function send(data, endpoint) {
+    data['page'] = window.location.pathname;
+    json = JSON.stringify(data);
     var params = new URLSearchParams();
-    params.append('page', window.location.pathname);
-    
-    for (var key in data) {
-	params.append(key, data[key]);
-    }
-
+    params.append("json", json);
     navigator.sendBeacon(endpoint, params);
 }
 

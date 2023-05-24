@@ -7,7 +7,7 @@ ErrorDocument 404 /new404.html
 DirectorySlash Off
 
 RewriteEngine On
-RewriteRule ^api/static/([0-9]*)$   /api/static/index.php?id=$1  
-RewriteRule ^api/static$   /api/static/index.php  
+RewriteRule ^api/static/([0-9]*)$   /api/static/index.php?id=$1  [L]
+RewriteRule ^api/static$   /api/static/index.php   [L]
 
 

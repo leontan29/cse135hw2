@@ -1,46 +1,42 @@
 <?php
 header("Content-Type: application/json");
 $method = $_SERVER['REQUEST_METHOD'];
+error_log(print_r("method = $method", true));
 
+// -----------------
+// GET
 if ($method == 'GET') {
   $id = 0;
   if (isset($_GET['id'])) {
      $id = $_GET['id'];
   }
 
-  $contacts = load();
-  if ($id) {
-    $entry = find($id);
-    if ($entry) {
-      respond(200, $entry);
-    } else {
-      respond(204, NULL); // no data
-    }
-    return;
-  } 
-
-  // return all contacts
-  respond(200, $contacts);
-  return;
-}
-
-if ($method == 'POST') {
-  $json = file_get_contents('php://input');
-  $entry = json_decode($json, true);
-  $contacts = load();
-  $maxid = 0;
-  foreach ($contacts as $c) {
-     if ($c['id'] > $maxid) {
-        $maxid = $c['id'];
-     }
+  $rows = load();
+  if (!$id) {
+    // return all rows
+    error_log(print_r($rows, true));
+    return respond(200, $rows);
   }
-  $entry['id'] = $maxid + 1;
-  $contacts[] = $entry; // append
-  save($contacts);
-  respond(200, '');
-  return;
+  
+  $entry = find($id);
+  return respond($entry ? 200 : 204, $entry);
 }
 
+// -----------------
+// POST
+if ($method == 'POST') {
+  error_log(print_r("in post", true));
+  $entry = [];
+  $obj = json_decode($_POST['json'], true);
+  foreach ($obj as $key => $value) {
+     $entry[$key] = $value;
+  }
+  insert($entry);
+  return respond(200, '');
+}
+
+// -----------------
+// DELETE
 if ($method == 'DELETE') {
   $id = 0;
   if (isset($_GET['id'])) {
@@ -48,15 +44,15 @@ if ($method == 'DELETE') {
   }
 
   if (!$id) {
-    respond(400, NULL);
-    return;
+    return respond(400, NULL);
   }
 
   delete($id);
-  respond(200, '');
-  return;
+  return respond(200, '');
 }
 
+// -----------------
+// PUT
 if ($method == 'PUT') {
   $id = 0;
   if (isset($_GET['id'])) {
@@ -64,70 +60,82 @@ if ($method == 'PUT') {
   }
 
   if (!$id) {
-    respond(400, NULL);
-    return;
+    return respond(400, NULL);
   }
-
-  $updated = false;
-  $json = file_get_contents('php://input');
-  $entry = json_decode($json, true);
-
+  
   $c = find($id);
   if (!$c) {
-    respond(404, NULL);
-    return;
+    return respond(404, NULL);
   }
 
-  foreach ($entry as $key => $value) {
-    $c[$key] = $value;
+  $_PUT = [];
+  parse_str(file_get_contents('php://input'), $_PUT);
+  $obj = json_decode($_PUT['json'], true);
+  foreach ($obj as $key => $value) {
+     $c[$key] = $value;
   }
-
+  var_dump($c);
   update($id, $c);
-  respond(200, '');
-  return;
+  return respond(200, '');
 }
 
-// this is not a supported method
-respond(404, '');
-return;
+// -----------------
+// UNKNOWN METHOD
+return respond(404, '');
 
 /* ------------------------------------------------------- */
 
 function find($id) {
-  $contacts = load();
-  foreach ($contacts as $entry) {
+  $rows = load();
+  foreach ($rows as $entry) {
     if ($id == $entry['id']) {
       return $entry;
     }
   }
-  return false;
+  return NULL;
+}
+
+function insert($c) {
+  $rows = load();
+  $maxid = 0;
+  foreach ($rows as $rr) {
+     if ($rr['id'] > $maxid) {
+        $maxid = $rr['id'];
+     }
+  }
+  $c['id'] = $maxid + 1;
+  $rows[] = $c;
+  save($rows);
+  return $c['id'];
 }
 
 function update($id, $c) {
   delete($id);
-  $contacts = load();
-  $contacts[] = $c;
-  save($contacts);
+  $rows = load();
+  $rows[] = $c;
+  save($rows);
 }
   
 
 function delete($id) {
-  $contacts = load();
-  for ($idx = 0; $idx < count($contacts); $idx++) {
-    if ($id == $contacts[$idx]['id']) {
-      unset($contacts[$idx]);
-      save($contacts);
+  $rows = load();
+  for ($idx = 0; $idx < count($rows); $idx++) {
+    if ($id == $rows[$idx]['id']) {
+      unset($rows[$idx]);
+      save($rows);
       break;
     }
   }
 }
 
 function load() {
-  return json_decode(file_get_contents('./static.json', true), true);
+  $txt = file_get_contents('./static.json', true);
+  $rows = json_decode($txt, true, JSON_UNESCAPED_SLASHES);
+  return $rows;
 }
 
-function save($contacts) {
-  $json = json_encode($contacts, JSON_PRETTY_PRINT);
+function save($rows) {
+  $json = json_encode($rows, JSON_PRETTY_PRINT);
   $file = fopen('./static.json', 'w');
   fwrite($file, $json);
   fclose($file);
@@ -139,6 +147,7 @@ function respond($code, $data) {
     $msg =  json_encode($data, JSON_PRETTY_PRINT);
     echo $msg;
   }
+  return NULL;
 }
 
 ?>

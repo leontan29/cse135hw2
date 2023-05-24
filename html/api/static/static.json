@@ -1,24 +1,25 @@
 [
     {
-	"id": 1,
-      "name": "John Doe",
-      "phone": "+1234567890",
-      "email": "johndoe@example.com",
-      "address": "123 Main Street, San Francisco, CA, 94102"
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/113.0.0.0 Safari\/537.36",
+        "language": "en-US",
+        "cookie_enabled": true,
+        "screen_height": 2160,
+        "screen_width": 3840,
+        "window_height": 1609,
+        "window_width": 893,
+        "page": "\/",
+        "id": 1
     },
     {
-	"id": 2,
-      "name": "Jane Smith",
-      "phone": "+0987654321",
-      "email": "janesmith@example.com",
-      "address": "456 Elm Street, San Francisco, CA, 94110"
-    },
-    {
-	"id": 3,
-      "name": "Alice Johnson",
-      "phone": "+9876543210",
-      "email": "alicejohnson@example.com",
-      "address": "789 Oak Street, San Francisco, CA, 94112"
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/113.0.0.0 Mobile Safari\/537.36",
+        "language": "en-US",
+        "cookie_enabled": true,
+        "screen_height": 824,
+        "screen_width": 384,
+        "window_height": 693,
+        "window_width": 384,
+        "network_type": "wifi",
+        "page": "\/",
+        "id": 2
     }
 ]
-
