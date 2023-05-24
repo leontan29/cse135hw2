@@ -24,14 +24,13 @@ if ($method == 'GET') {
   return;
 }
 
-
 if ($method == 'POST') {
   $json = file_get_contents('php://input');
   $entry = json_decode($json, true);
   $contacts = load();
   $maxid = 0;
   foreach ($contacts as $c) {
-     if ($c['id']) > $maxid) {
+     if ($c['id'] > $maxid) {
         $maxid = $c['id'];
      }
   }
@@ -42,6 +41,57 @@ if ($method == 'POST') {
   return;
 }
 
+if ($method == 'DELETE') {
+  $id = 0;
+  if (isset($_GET['id'])) {
+     $id = $_GET['id'];
+  }
+
+  if (!$id) {
+    respond(400, NULL);
+    return;
+  }
+
+  delete($id);
+  respond(200, '');
+  return;
+}
+
+if ($method == 'PUT') {
+  $id = 0;
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+  }
+
+  if (!$id) {
+    respond(400, NULL);
+    return;
+  }
+
+  $updated = false;
+  $json = file_get_contents('php://input');
+  $entry = json_decode($json, true);
+
+  $c = find($id);
+  if (!$c) {
+    respond(404, NULL);
+    return;
+  }
+
+  foreach ($entry as $key => $value) {
+    $c[$key] = $value;
+  }
+
+  update($id, $c);
+  respond(200, '');
+  return;
+}
+
+// this is not a supported method
+respond(404, '');
+return;
+
+/* ------------------------------------------------------- */
 
 function find($id) {
   $contacts = load();
@@ -53,6 +103,24 @@ function find($id) {
   return false;
 }
 
+function update($id, $c) {
+  delete($id);
+  $contacts = load();
+  $contacts[] = $c;
+  save($contacts);
+}
+  
+
+function delete($id) {
+  $contacts = load();
+  for ($idx = 0; $idx < count($contacts); $idx++) {
+    if ($id == $contacts[$idx]['id']) {
+      unset($contacts[$idx]);
+      save($contacts);
+      break;
+    }
+  }
+}
 
 function load() {
   return json_decode(file_get_contents('./static.json', true), true);
@@ -60,7 +128,7 @@ function load() {
 
 function save($contacts) {
   $json = json_encode($contacts, JSON_PRETTY_PRINT);
-  $file = fopen('static.json', 'w');
+  $file = fopen('./static.json', 'w');
   fwrite($file, $json);
   fclose($file);
 }
@@ -70,7 +138,6 @@ function respond($code, $data) {
   if ($data) {
     $msg =  json_encode($data, JSON_PRETTY_PRINT);
     echo $msg;
-    error_log( print_r($msg, true));
   }
 }
 
