@@ -33,9 +33,15 @@ function db_update($tab, $id, $kval) {
      $entry[$key] = $value;
   }
   db_delete($tab, $id);
+
   $rows = db_load($tab);
   $rows[] = $entry;
-  save($tab, $rows);
+
+  $copy = [];
+  foreach ($rows as $rr) {
+     $copy[] = $rr;
+  }
+  save($tab, $copy);
   return true;
 }
   
@@ -65,13 +71,5 @@ function save($tab, $rows) {
   fclose($file);
 }
 
-function respond($code, $data) {
-  http_response_code($code);
-  if ($data) {
-    $msg =  json_encode($data, JSON_PRETTY_PRINT);
-    echo $msg;
-  }
-  return null;
-}
 
 ?>

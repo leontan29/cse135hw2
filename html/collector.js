@@ -109,14 +109,14 @@ function sendActivityData(force) {
 	return;
     }
 
-    // take out all activities in the accum
-    let activities = activity_accum;
-    activity_accum = [];
-
-    if (!activities) {
+    if (activity_accum.length == 0) {
 	// nothing to send
 	return;
     }
+
+    // take out all activities in the accum
+    let activities = activity_accum;
+    activity_accum = [];
 
     // make a data msg
     var data = {};
