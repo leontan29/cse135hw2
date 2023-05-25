@@ -5,17 +5,19 @@ require '../lib/db.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+const TAB = 'statictab';
+
 // -----------------
 // GET
 if ($method == 'GET') {
   $id = $_GET['id'] ?? null;
   if (!$id) {
     // return all rows
-    $rows = load();
+    $rows = load(TAB);
     return respond(200, $rows);
   }
   
-  $entry = find($id);
+  $entry = find(TAB, $id);
   return respond($entry ? 200 : 204, $entry);
 }
 
@@ -30,7 +32,7 @@ if ($method == 'POST') {
   if (!$entry) {
      return respond(400, '');
   }
-  insert($entry);
+  insert(TAB, $entry);
   return respond(200, '');
 }
 
@@ -42,7 +44,7 @@ if ($method == 'DELETE') {
     return respond(400, null);
   }
 
-  delete($id);
+  delete(TAB, $id);
   return respond(200, '');
 }
 
@@ -54,7 +56,7 @@ if ($method == 'PUT') {
     return respond(400, null);
   }
   
-  $entry = find($id);
+  $entry = find(TAB, $id);
   if (!$entry) {
     return respond(404, null);
   }
@@ -68,7 +70,7 @@ if ($method == 'PUT') {
   if (!$entry) {
      return respond(400, '');
   }
-  update($id, $entry);
+  update(TAB, $id, $entry);
   return respond(200, '');
 }
 

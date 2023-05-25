@@ -1,7 +1,7 @@
 <?php
 
-function find($id) {
-  $rows = load();
+function find($tab, $id) {
+  $rows = load($tab);
   foreach ($rows as $entry) {
     if ($id == $entry['id']) {
       return $entry;
@@ -10,30 +10,30 @@ function find($id) {
   return null;
 }
 
-function insert($c) {
-  $rows = load();
+function insert($tab, $row) {
+  $rows = load($tab);
   $maxid = 0;
   foreach ($rows as $rr) {
      if ($rr['id'] > $maxid) {
         $maxid = $rr['id'];
      }
   }
-  $c['id'] = $maxid + 1;
-  $rows[] = $c;
+  $row['id'] = $maxid + 1;
+  $rows[] = $row;
   save($rows);
-  return $c['id'];
+  return $row['id'];
 }
 
-function update($id, $c) {
-  delete($id);
-  $rows = load();
-  $rows[] = $c;
+function update($tab, $id, $row) {
+  delete($tab, $id);
+  $rows = load($tab);
+  $rows[] = $row;
   save($rows);
 }
   
 
-function delete($id) {
-  $rows = load();
+function delete($tab, $id) {
+  $rows = load($tab);
   for ($idx = 0; $idx < count($rows); $idx++) {
     if ($id == $rows[$idx]['id']) {
       unset($rows[$idx]);
@@ -43,7 +43,7 @@ function delete($id) {
   }
 }
 
-function load() {
+function load($tab) {
   $txt = file_get_contents('./static.json', true);
   $rows = json_decode($txt, true, JSON_UNESCAPED_SLASHES);
   return $rows;
