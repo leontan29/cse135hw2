@@ -1,20 +1,17 @@
 <?php
 header("Content-Type: application/json");
+
+require '../lib/db.php';
+
 $method = $_SERVER['REQUEST_METHOD'];
-error_log(print_r("method = $method", true));
 
 // -----------------
 // GET
 if ($method == 'GET') {
-  $id = 0;
-  if (isset($_GET['id'])) {
-     $id = $_GET['id'];
-  }
-
-  $rows = load();
+  $id = $_GET['id'] ?? null;
   if (!$id) {
     // return all rows
-    error_log(print_r($rows, true));
+    $rows = load();
     return respond(200, $rows);
   }
   
@@ -25,11 +22,13 @@ if ($method == 'GET') {
 // -----------------
 // POST
 if ($method == 'POST') {
-  error_log(print_r("in post", true));
   $entry = [];
-  $obj = json_decode($_POST['json'], true);
+  $obj = json_decode($_POST['json'] ?? "{}", true);
   foreach ($obj as $key => $value) {
      $entry[$key] = $value;
+  }
+  if (!$entry) {
+     return respond(400, '');
   }
   insert($entry);
   return respond(200, '');
@@ -38,13 +37,9 @@ if ($method == 'POST') {
 // -----------------
 // DELETE
 if ($method == 'DELETE') {
-  $id = 0;
-  if (isset($_GET['id'])) {
-     $id = $_GET['id'];
-  }
-
+  $id = $_GET['id'] ?? null;
   if (!$id) {
-    return respond(400, NULL);
+    return respond(400, null);
   }
 
   delete($id);
@@ -54,28 +49,26 @@ if ($method == 'DELETE') {
 // -----------------
 // PUT
 if ($method == 'PUT') {
-  $id = 0;
-  if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-  }
-
+  $id = $_GET['id'] ?? null;
   if (!$id) {
-    return respond(400, NULL);
+    return respond(400, null);
   }
   
-  $c = find($id);
-  if (!$c) {
-    return respond(404, NULL);
+  $entry = find($id);
+  if (!$entry) {
+    return respond(404, null);
   }
 
   $_PUT = [];
   parse_str(file_get_contents('php://input'), $_PUT);
-  $obj = json_decode($_PUT['json'], true);
+  $obj = json_decode($_PUT['json'] ?? "{}", true);
   foreach ($obj as $key => $value) {
-     $c[$key] = $value;
+     $entry[$key] = $value;
   }
-  var_dump($c);
-  update($id, $c);
+  if (!$entry) {
+     return respond(400, '');
+  }
+  update($id, $entry);
   return respond(200, '');
 }
 
@@ -83,71 +76,5 @@ if ($method == 'PUT') {
 // UNKNOWN METHOD
 return respond(404, '');
 
-/* ------------------------------------------------------- */
-
-function find($id) {
-  $rows = load();
-  foreach ($rows as $entry) {
-    if ($id == $entry['id']) {
-      return $entry;
-    }
-  }
-  return NULL;
-}
-
-function insert($c) {
-  $rows = load();
-  $maxid = 0;
-  foreach ($rows as $rr) {
-     if ($rr['id'] > $maxid) {
-        $maxid = $rr['id'];
-     }
-  }
-  $c['id'] = $maxid + 1;
-  $rows[] = $c;
-  save($rows);
-  return $c['id'];
-}
-
-function update($id, $c) {
-  delete($id);
-  $rows = load();
-  $rows[] = $c;
-  save($rows);
-}
-  
-
-function delete($id) {
-  $rows = load();
-  for ($idx = 0; $idx < count($rows); $idx++) {
-    if ($id == $rows[$idx]['id']) {
-      unset($rows[$idx]);
-      save($rows);
-      break;
-    }
-  }
-}
-
-function load() {
-  $txt = file_get_contents('./static.json', true);
-  $rows = json_decode($txt, true, JSON_UNESCAPED_SLASHES);
-  return $rows;
-}
-
-function save($rows) {
-  $json = json_encode($rows, JSON_PRETTY_PRINT);
-  $file = fopen('./static.json', 'w');
-  fwrite($file, $json);
-  fclose($file);
-}
-
-function respond($code, $data) {
-  http_response_code($code);
-  if ($data) {
-    $msg =  json_encode($data, JSON_PRETTY_PRINT);
-    echo $msg;
-  }
-  return NULL;
-}
 
 ?>
