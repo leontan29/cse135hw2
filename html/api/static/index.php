@@ -2,6 +2,6 @@
 
 require '../lib/helper.php';
 require '../lib/rest.php';
-return REST('info', $_SERVER['REQUEST_METHOD'], $_GET, $_POST);
+return REST('visit', $_SERVER['REQUEST_METHOD'], $_GET, $_POST);
 
 ?>

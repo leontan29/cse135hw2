@@ -132,7 +132,7 @@ function sendActivityData(force) {
 // keeps track of idle-time
 var idle_time = 0;
 function reset_idle_time() {
-    if (idle_time > 2000) {
+    if (idle_time >= 2000) {
 	// significant idle time
 	activity_accum.push(['idle_time', idle_time]);
 	activity_accum.push(['idle_time_ended_at', Date.now()]);
