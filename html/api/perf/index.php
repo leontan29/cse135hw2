@@ -5,7 +5,7 @@ require '../lib/helper.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-const TAB = 'info';
+const TAB = 'perf';
 
 // -----------------
 // GET
