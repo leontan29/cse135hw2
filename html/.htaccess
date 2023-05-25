@@ -7,9 +7,13 @@ ErrorDocument 404 /new404.html
 DirectorySlash Off
 
 RewriteEngine On
-RewriteRule ^api/static/([0-9]*)$   /api/static/index.php?id=$1  [L]
-RewriteRule ^api/static$   /api/static/index.php   [L]
-RewriteRule ^api/perf/([0-9]*)$   /api/perf/index.php?id=$1  [L]
-RewriteRule ^api/perf$   /api/perf/index.php   [L]
+#RewriteRule ^api/static/([0-9]*)$   /api/static/index.php?id=$1  [L]
+#RewriteRule ^api/static$   /api/static/index.php   [L]
+#RewriteRule ^api/perf/([0-9]*)$   /api/perf/index.php?id=$1  [L]
+#RewriteRule ^api/perf$   /api/perf/index.php   [L]
+#RewriteRule ^api/activity/([0-9]*)$   /api/activity/index.php?id=$1  [L]
+#RewriteRule ^api/activity$   /api/activity/index.php   [L]
 
 
+RewriteRule ^api/?([a-z]+)/([0-9]*)$   /api/$1/index.php?id=$2  [L]
+RewriteRule ^api/?([a-z]+)$   /api/$1/index.php   [L]

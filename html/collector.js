@@ -120,8 +120,8 @@ function sendActivityData(force) {
 
     // make a data msg
     var data = {};
-    for (var item in activities) {
-	const [typ, value] = item;
+    for (let i = 0; i < activities.length; i++) {
+	const [typ, value] = activities[i];
 	data[typ] = value;
     }
     // send it
@@ -143,8 +143,8 @@ function reset_idle_time() {
 // check idle time every 100ms
 setInterval(() => {
     idle_time += 100;
-    // force send every 5 second
-    force = (idle_time % 5000 == 0);
+    // force send every second
+    force = (idle_time % 1000 == 0);
     sendActivityData(force);
 }, 100);
 
