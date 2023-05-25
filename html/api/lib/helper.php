@@ -1,7 +1,7 @@
 <?php
 
-function find($tab, $id) {
-  $rows = load($tab);
+function db_find($tab, $id) {
+  $rows = db_load($tab);
   foreach ($rows as $entry) {
     if ($id == $entry['id']) {
       return $entry;
@@ -10,8 +10,8 @@ function find($tab, $id) {
   return null;
 }
 
-function insert($tab, $row) {
-  $rows = load($tab);
+function db_insert($tab, $row) {
+  $rows = db_load($tab);
   $maxid = 0;
   foreach ($rows as $rr) {
      if ($rr['id'] > $maxid) {
@@ -24,16 +24,24 @@ function insert($tab, $row) {
   return $row['id'];
 }
 
-function update($tab, $id, $row) {
-  delete($tab, $id);
-  $rows = load($tab);
-  $rows[] = $row;
+function db_update($tab, $id, $kval) {
+  $entry = db_find($tab, $id);
+  if (!$entry) {
+     return false;
+  }
+  foreach ($kval as $key => $value) {
+     $entry[$key] = $value;
+  }
+  db_delete($tab, $id);
+  $rows = db_load($tab);
+  $rows[] = $entry;
   save($rows);
+  return true;
 }
   
 
-function delete($tab, $id) {
-  $rows = load($tab);
+function db_delete($tab, $id) {
+  $rows = db_load($tab);
   for ($idx = 0; $idx < count($rows); $idx++) {
     if ($id == $rows[$idx]['id']) {
       unset($rows[$idx]);
@@ -41,9 +49,10 @@ function delete($tab, $id) {
       break;
     }
   }
+  return true;
 }
 
-function load($tab) {
+function db_load($tab) {
   $txt = file_get_contents('./static.json', true);
   $rows = json_decode($txt, true, JSON_UNESCAPED_SLASHES);
   return $rows;

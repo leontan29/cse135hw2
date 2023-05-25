@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 
-require '../lib/db.php';
+require '../lib/helper.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -13,11 +13,11 @@ if ($method == 'GET') {
   $id = $_GET['id'] ?? null;
   if (!$id) {
     // return all rows
-    $rows = load(TAB);
+    $rows = db_load(TAB);
     return respond(200, $rows);
   }
   
-  $entry = find(TAB, $id);
+  $entry = db_find(TAB, $id);
   return respond($entry ? 200 : 204, $entry);
 }
 
@@ -32,7 +32,11 @@ if ($method == 'POST') {
   if (!$entry) {
      return respond(400, '');
   }
-  insert(TAB, $entry);
+  
+  if (!db_insert(TAB, $entry)) {
+     return respond(400, '');
+  }
+  
   return respond(200, '');
 }
 
@@ -44,7 +48,10 @@ if ($method == 'DELETE') {
     return respond(400, null);
   }
 
-  delete(TAB, $id);
+  if (!db_delete(TAB, $id)) {
+     return respond(400, '');
+  }
+  
   return respond(200, '');
 }
 
@@ -56,21 +63,14 @@ if ($method == 'PUT') {
     return respond(400, null);
   }
   
-  $entry = find(TAB, $id);
-  if (!$entry) {
-    return respond(404, null);
-  }
-
   $_PUT = [];
   parse_str(file_get_contents('php://input'), $_PUT);
-  $obj = json_decode($_PUT['json'] ?? "{}", true);
-  foreach ($obj as $key => $value) {
-     $entry[$key] = $value;
+  $kval = json_decode($_PUT['json'] ?? "{}", true);
+
+  if (!db_update(TAB, $id, $kval)) {
+     return respond(400, null);
   }
-  if (!$entry) {
-     return respond(400, '');
-  }
-  update(TAB, $id, $entry);
+
   return respond(200, '');
 }
 
