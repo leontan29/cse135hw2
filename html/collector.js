@@ -41,11 +41,12 @@ function generateRandomString(length) {
   return randomString;
 }
 
+const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
 const TRACKERNAME = 'cse135tracker';
 let tracker = getCookie(TRACKERNAME);
 if (!tracker) {
-    tracker = '' + Date().getTime() + ':' + generateRandomString(10);
+    tracker = '' + (new Date()).getTime() + ':' + generateRandomString(10);
     setCookie(TRACKERNAME, tracker, 1);
 }
 
@@ -67,12 +68,12 @@ function sendStaticData() {
 	// static
 	user_agent: window.navigator.userAgent,
 	language: window.navigator.language,
-	cookie_enabled: window.navigator.cookieEnabled,
+	cookie_enabled: window.navigator.cookieEnabled ? 1 : 0,
 	screen_height: screen.height,
 	screen_width: screen.width,
 	window_height: window.innerHeight,
 	window_width: window.innerWidth,
-	network_type: navigator.connection.effectiveType,
+	network_type: isFirefox ? "unknown" : navigator.connection.effectiveType,
     };
     send(data, '/api/static');
 }
@@ -165,7 +166,7 @@ document.addEventListener('click', (e) => {
 
 document.addEventListener('keydown', (e) => {
     reset_idle_time();
-    activity_accum.push(['key', e.key]);
+    activity_accum.push(['keydown', e.key]);
     sendActivityData(false);
 });
 

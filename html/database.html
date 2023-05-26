@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <!--Script Reference[1]-->
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script>
+      rows = [];
+      fetch('/api/static')
+    .then(response => response.text())
+    .then(text => 
+	document.querySelector('zing-grid').setAttribute('data', text));
+    </script>
+  </head>
+  <body>
+    <!--Grid Component Placement[2]-->
+    <zing-grid
+      caption="Static Analytics Data"
+      data='[{ "name": "dummy data", "origin": "dummy data" }]'>
+    </zing-grid>
+  </body>
+</html>
