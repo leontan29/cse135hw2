@@ -17,6 +17,30 @@ To access the site or machine:
 
 [HW2](#hw2)
 
+[HW3](#hw3)
+
+## HW3
+* Site Links
+  - [Live](http://cse135byleon.site/)
+  - [database.html](http://cse135byleon.site/database.html)
+  - [hellodataviz.html](http://cse135byleon.site/hellodataviz.html)
+
+* Source Code
+  - [database.html](https://github.com/leontan29/cse135hw2/blob/main/html/database.html)
+  - [hellodataviz.html](https://github.com/leontan29/cse135hw2/blob/main/html/hellodataviz.html)
+  - [collector.js](https://github.com/leontan29/cse135hw2/blob/main/html/collector.js)
+  - REST Handlers for Static Data: [api/static/index.php](https://github.com/leontan29/cse135hw2/blob/main/html/api/static/index.php)
+  - REST Handlers for Perf Data: [api/perf/index.php](https://github.com/leontan29/cse135hw2/blob/main/html/api/perf/index.php)
+  - Rest Handlers for Activity Data: [api/activity/index.php](https://github.com/leontan29/cse135hw2/blob/main/html/api/activity/index.php)
+  - DB Access Functions: [api/lib/helper.php](https://github.com/leontan29/cse135hw2/blob/main/html/api/lib/helper.php)
+  - Generic REST Handlers: [api/lib/rest.php](https://github.com/leontan29/cse135hw2/blob/main/html/api/lib/rest.php)
+* Media
+  - [postman.png](https://github.com/leontan29/cse135hw2/blob/main/html/screenshots.hw3/postman.png)
+  - [REST.png](https://github.com/leontan29/cse135hw2/blob/main/html/screenshots.hw3/REST.png)
+  - [database.png](https://github.com/leontan29/cse135hw2/blob/main/html/screenshots.hw3/database.png)
+  - [routes.pdf](TODO)
+  
+
 ## HW2
 * [perl-hello-html-world.png](http://cse135byleon.site/screenshots.hw2/perl-hello-html-world.png)
 * [perl-hello-json-world.png](http://cse135byleon.site/screenshots.hw2/perl-hello-json-world.png)
