@@ -38,7 +38,7 @@ To access the site or machine:
   - [postman.png](https://github.com/leontan29/cse135hw2/blob/main/html/screenshots.hw3/postman.png)
   - [REST.png](https://github.com/leontan29/cse135hw2/blob/main/html/screenshots.hw3/REST.png)
   - [database.png](https://github.com/leontan29/cse135hw2/blob/main/html/screenshots.hw3/database.png)
-  - [routes.pdf](TODO)
+  - [routes.pdf](https://github.com/leontan29/cse135hw2/blob/main/html/screenshots.hw3/routes.pdf)
   
 
 ## HW2
