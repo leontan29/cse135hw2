@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <style>
+      .container {
+	  text-align: center;
+      }
+      .centered {
+	  display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='container'>
+      <div id='ua-by-day-chart' class='centered'></div>
+    </div>
+    <div class='container'>
+      <div id='device-chart' class='centered'></div>
+    </div>
+    <div class='container'>
+      <div id='ua-chart' class='centered'></div>
+    </div>
+    <!-- Just before the closing body tag is best -->
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+      function browser(ua) {
+	  if (ua.includes('Firefox')) return 'firefox';
+	  if (ua.includes('Edg')) return 'edge';
+	  if (ua.includes('Chrome/')) return 'chrome';
+	  if (ua.includes('Safari')) return 'safari';
+	  if (ua.includes('OPR') || ua.includes('Opera')) return 'opera';
+	  return 'others';
+      }
+
+      // Line Chart on Firefox, Chrome, Others
+      fetch('/api/static')
+    .then (response => response.json())
+    .then (json => {
+	firefox = [0, 0, 0, 0, 0, 0, 0];
+	safari = [0, 0, 0, 0, 0, 0, 0];
+	others = [0, 0, 0, 0, 0, 0, 0];
+	let scalex = ['', '', '', '', '', '', ''];
+	json.forEach(row => {
+	    let date = row.ctime.substring(0, 10);
+	    if (date < '2023-05-19') return;
+	    if (date >= '2023-05-26') return;
+	    let idx = parseInt(date.substring(8,10)) - 19;
+	    scalex[idx] = date;
+	    let typ = browser(row['user_agent']);
+	    if (typ == 'firefox') {
+		firefox[idx]++;
+	    } else if (typ == 'safari') {
+		safari[idx]++;
+	    } else {
+		others[idx]++;
+	    }
+	});
+	var myConfig = {
+	    type: "line",
+	    title: { text: 'User Agent By Day' },
+	    legend: {},
+	    'scale-x': { values: scalex },
+	    series: [ { values: firefox, text: 'firefox'}, {values: safari, text: 'safari'}, {values: others, text: 'others'} ],
+	};
+	zingchart.render({
+	    id: 'ua-by-day-chart',
+	    data: myConfig,
+	    height: 400,
+	    width: '70%'
+	});
+    });
+
+
+      // Bar Chart on Small (width < 400) / Big Devices
+      fetch('/api/static')
+    .then (response => response.json())
+    .then (json => {
+	let small = [0, 0, 0, 0, 0, 0, 0];
+	let big = [0, 0, 0, 0, 0, 0, 0];
+	let scalex = ['', '', '', '', '', '', ''];
+	json.forEach(row => {
+	    let date = row.ctime.substring(0, 10);
+	    if (date < '2023-05-19') return;
+	    if (date >= '2023-05-26') return;
+	    let idx = parseInt(date.substring(8,10)) - 19;
+	    scalex[idx] = date;
+	    if (row.screen_width < 400) {
+		small[idx]++;
+	    } else {
+		big[idx]++;
+	    }
+	});
+	var myConfig = {
+	    type: "bar",
+	    title: { text: 'Device Type' },
+	    legend: {},
+	    'scale-x': { values: scalex },
+	    series: [ { values: small, text: 'small'}, {values: big, text: 'big'} ],
+	};
+	zingchart.render({
+	    id: 'device-chart',
+	    data: myConfig,
+	    height: 400,
+	    width: '70%'
+	});
+    });
+
+      // Pie Chart on User Agents
+      fetch('/api/static')
+    .then (response => response.json())
+    .then (json => {
+	let firefox = 0;
+	let chrome= 0;
+	let opera = 0;
+	let edge = 0;
+	let safari = 0;
+	let others = 0;
+	json.forEach(row => {
+	    let typ = browser(row['user_agent']);
+	    if (typ == 'firefox') {
+		firefox++;
+	    } else if (typ == 'edge') {
+		edge++;
+	    } else if (typ == 'chrome') {
+		chrome++;
+	    } else if (typ == 'safari') {
+		safari++;
+	    } else if (typ == 'opera') {
+		opera++;
+	    } else {
+		others++;
+	    }
+	});
+	var myConfig = {
+	    type: "pie",
+	    legend: {},
+	    title:  { text: "User Agents" },
+	    series: []
+	};
+	if (firefox) {
+	    myConfig.series.push({ values: [firefox], text: "firefox" });
+	}
+	if (chrome) {
+	    myConfig.series.push({ values: [chrome], text: "chrome" });
+	}
+	if (opera) {
+	    myConfig.series.push({ values: [opera], text: "opera" });
+	}
+	if (edge) {
+	    myConfig.series.push( { values: [edge], text: "edge" } );
+	}
+	if (safari) {
+	    myConfig.series.push( { values: [safari], text: "safari" } );
+	}
+	if (others) {
+	    myConfig.series.push( { values: [others], text: "others" } );
+	}
+	zingchart.render({
+	    id: 'ua-chart',
+	    data: myConfig,
+	    height: 400,
+	    width: 500
+	});
+    });
+    </script>
+  </body>
+</html>

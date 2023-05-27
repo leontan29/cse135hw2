@@ -3,11 +3,10 @@
     <!--Script Reference[1]-->
     <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
     <script>
-      rows = [];
       fetch('/api/static')
-    .then(response => response.text())
-    .then(text => 
-	document.querySelector('zing-grid').setAttribute('data', text));
+        .then(response => response.text())
+        .then(text => 
+	    document.querySelector('zing-grid').setAttribute('data', text));
     </script>
   </head>
   <body>

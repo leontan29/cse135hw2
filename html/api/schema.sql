@@ -1,6 +1,7 @@
 drop table if exists activity;
 create table activity(
        id int NOT NULL AUTO_INCREMENT,
+       ctime timestamp default current_timestamp,
        tracker varchar(50),
        page varchar(500),
        error varchar(1000),
@@ -20,6 +21,7 @@ create table activity(
 drop table if exists visit;
 create table visit(
        id int NOT NULL AUTO_INCREMENT,
+       ctime timestamp default current_timestamp,
        tracker varchar(50),
        page varchar(500),
        user_agent varchar(200),
@@ -37,6 +39,7 @@ create table visit(
 drop table if exists perf;
 create table perf(
        id int NOT NULL AUTO_INCREMENT,
+       ctime timestamp default current_timestamp,
        tracker varchar(50),
        page varchar(500),
        timing json,
