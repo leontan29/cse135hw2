@@ -1,0 +1,5 @@
+DirectorySlash Off
+
+RewriteEngine On
+RewriteRule ^api/?([a-z]+)/([0-9]*)$   /api/$1.php?id=$2  [L]
+RewriteRule ^api/?([a-z]+)$   /api/$1.php   [L]
