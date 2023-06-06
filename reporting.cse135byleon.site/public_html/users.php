@@ -113,7 +113,7 @@ if ($form_errmsg) {
     </form>
 
     <h2>User List</h2>
-    <zing-grid caption="User List" editor-controls="remover"
+    <zing-grid caption="User List" editor-controls="remover editor"
     src = '/api/user'>
     </zing-grid>
 </body>
