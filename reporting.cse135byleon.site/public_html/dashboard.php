@@ -1,7 +1,7 @@
 <?php
-include 'config.php';
+include 'inc/config.php';
 
-if (!$username) {
+if (!$identifier) {
     header("location: login.php");
     exit;
 }
@@ -11,10 +11,15 @@ if (!$username) {
 <html>
 <head>
     <title>Dashboard</title>
+    <link rel='stylesheet' href='style.css'>
 </head>
+
 <body>
-    <h2>Welcome, <?php echo $_SESSION["username"]; ?>!</h2>
-    <a href='users.php'>User Management</a>
-    <a href="logout.php">Logout</a>
+<?php
+    setup_tab(basename(__FILE__));
+?>
+
+    <h2>Welcome, <?= $identifier ?><?= $is_admin ? ' (admin)' : '' ?>!</h2>
+
 </body>
 </html>
