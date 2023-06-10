@@ -21,6 +21,7 @@ function retok($payload) {
     exit;
 }
 
+// Only admin has access to this data!!!
 if (!$is_admin) {
     reterror(403, "403 Forbidden");
 }
