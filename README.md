@@ -19,6 +19,57 @@ To access the site or machine:
 
 [HW3](#hw3)
 
+[HW4](#hw4)
+
+
+## HW4
+* Site Links
+  - [Live](http://reporting.cse135byleon.site/)
+
+* Login Info for graders
+  - For site access, username: <em>grader</em>. Password: <em>Grader,135</em>
+  - For regular grader login, username: <em>grader</em>, Password: (same as above).
+  - For admin grader login, username: <em>graderadmin</em>, Password: (same as above).
+
+* Design decisions
+  - I used PHP as the scripting language for the backend and Javascript as front-end.
+  - The database is a local mysql database.
+
+  - For authentication, I store only hashed password in the Users
+    table. On login, I authenticate the password like this: <em>if
+    (password_verify($password, $storedHashedPassword)) then SUCCESS
+    else FAILED.</em>
+
+  - If authentication was successful, I store the <em>identifier</em>
+    (which may be either username or email), and a <em>is_admin</em>
+    flag in the <em>_SESSION[]</em> provided by PHP-session. Pages
+    that are accessible by authorized users only must check to see if
+    <em>_SESSION["identifier"]</em> is set. Pages that are accessible
+    by admin users only must check the flag
+    <em>_SESSION["is_admin"]</em>. At logout, I simply destroy the
+    session.
+
+  - For the dashboard, I created 3 charts:
+  
+      1. Hourly Users: This line-chart shows the #users on the site
+      over 24-hour period. It tells you when the machine is most busy
+      and most free.
+
+      2. This Week Hourly Errors: This bar-chart shows the number of
+      errors that have occured at users' end. If you pushed out a
+      buggy release, you will likely see a spike right after you
+      deployed the new code.
+
+      3. User Agents: This pie-chart indicates which browser your
+      customers are using. You may want to tune your javascript to
+      work nicely with the popular browsers.
+
+  - For the report, I used the Hourly Users Chart to determine when is
+    the best time in the day to shutdown the machines for maintenance.
+
+* Source Code
+  - [login]
+
 ## HW3
 * Site Links
   - [Live](http://cse135byleon.site/)

@@ -6,7 +6,6 @@ if (!$identifier) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +27,61 @@ if (!$identifier) {
 ?>
 
     <h2>Welcome, <?= $identifier ?><?= $is_admin ? ' (admin)' : '' ?>!</h2>
+    <p>This line-chart shows the #users on the site over 24-hour period. It
+      tells you when the machine is most busy and most free.</p>
     <div class='container'>
       <div id='hour-chart' class='centered'></div>
     </div>
+    <br>
+    <hr>
+    <p>This bar-chart shows the number of errors that have occured at users'
+      end. If you pushed out a buggy release, you will likely see a spike
+      right after you deployed the new code.</p>
+    <div class='container'>
+      <div id='error-chart' class='centered'></div>
+    </div>
+    <br>
+    <hr>
+    <p>This pie-chart indicates which browser your customers are using.
+      You may want to tune your javascript to work nicely with the popular
+      browsers.</p>
     <div class='container'>
       <div id='ua-chart' class='centered'></div>
     </div>
 
     
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+      // Error chart on #errors over 7 days
+      fetch('/api/errorweekly')
+      .then (response => response.json())
+      .then (json => {
+        let scalex=[];
+	let series={};
+	json.forEach(row => {
+	   series[row['timestamp']] = row['cnt'];
+	   scalex.push(row['timestamp']);
+	});
+	console.log("series");
+	console.log(series);
+	console.log("scalex");
+	console.log(scalex);
+	
+	var myConfig = {
+	    type: "bar",
+	    title: { text: 'This Week Hourly Errors' },
+	    'scale-x': { values: scalex },
+	    series: [ { values: series } ],
+	};
+	zingchart.render({
+	    id: 'error-chart',
+	    data: myConfig,
+	    height: 400,
+	    width: '70%'
+	});
+      });
+    </script>
+
     <script>
       // Line Chart on #users over 24 hours
       fetch('/api/visithour')
@@ -49,8 +94,7 @@ if (!$identifier) {
 	
 	var myConfig = {
 	    type: "line",
-	    title: { text: '#Users over a day' },
-	    legend: {},
+	    title: { text: 'Hourly Users' },
 	    'scale-x': { values: Array.from(total.keys()) },
 	    series: [ { values: total } ],
 	};

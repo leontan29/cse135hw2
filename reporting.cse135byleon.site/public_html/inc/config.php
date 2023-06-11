@@ -5,8 +5,8 @@ $identifier = $_SESSION["identifier"] ?? "";
 $is_admin = (!!$identifier) && !!($_SESSION["is_admin"] ?? false);
 $conn = false;
 
-define('TABNAME', array('Dashboard', 'Users', 'Logout'));
-define('TABPATH', array('dashboard.php', 'users.php', 'logout.php'));
+define('TABNAME', array('Dashboard', 'Users', 'Report', 'Logout'));
+define('TABPATH', array('dashboard.php', 'users.php', 'busystate.php', 'logout.php'));
 
 
 function setup_tab($curpath)

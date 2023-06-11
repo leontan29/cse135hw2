@@ -46,8 +46,6 @@ if ($_POST['submit'] ?? false) {
 
 
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
