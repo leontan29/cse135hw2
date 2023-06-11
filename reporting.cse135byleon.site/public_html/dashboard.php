@@ -29,15 +29,45 @@ if (!$identifier) {
 
     <h2>Welcome, <?= $identifier ?><?= $is_admin ? ' (admin)' : '' ?>!</h2>
     <div class='container'>
+      <div id='hour-chart' class='centered'></div>
+    </div>
+    <div class='container'>
       <div id='ua-chart' class='centered'></div>
     </div>
+
     
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     <script>
+      // Line Chart on #users over 24 hours
+      fetch('/api/visithour')
+      .then (response => response.json())
+      .then (json => {
+        let total = new Array(24).fill(0);
+	json.forEach(row => {
+	   total[row['hr']] = row['cnt'];
+	});
+	
+	var myConfig = {
+	    type: "line",
+	    title: { text: '#Users over a day' },
+	    legend: {},
+	    'scale-x': { values: Array.from(total.keys()) },
+	    series: [ { values: total } ],
+	};
+	zingchart.render({
+	    id: 'hour-chart',
+	    data: myConfig,
+	    height: 400,
+	    width: '70%'
+	});
+      });
+    </script>
+      
+    <script>
       // Pie Chart on User Agents
       fetch('/api/useragent')
-    .then (response => response.json())
-    .then (json => {
+      .then (response => response.json())
+      .then (json => {
 	let firefox = 0;
 	let chrome= 0;
 	let opera = 0;
