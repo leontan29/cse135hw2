@@ -27,7 +27,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 // Handle GET request
 if ($method === 'GET') {
-    // Retrieve all users from the database
+    // Return tuples like this: [HH, count]
+    // HH is the hour of the day.
+    // count is the number of http connects we received.
     $conn = db_connect();
     $stmt = $conn->prepare("
       select time_format(ctime, '%H') hr, count(*) cnt from visit group by 1;

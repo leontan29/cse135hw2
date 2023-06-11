@@ -27,7 +27,11 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 // Handle GET request
 if ($method === 'GET') {
-    // Retrieve all users from the database
+    // Return tuples like this: ["yyyy/mm/dd hh", N]
+    // indicating there are N errors during the hour "yyyy/mm/dd hh".
+    // e.g. ["2023/06/01 18", 100] indicates there were 100 errors between
+    // 6pm and 7pm on June 1.
+    //
     $conn = db_connect();
     $stmt = $conn->prepare("
     SELECT BAR.timestamp, coalesce(FOO.cnt, 0) as cnt from 

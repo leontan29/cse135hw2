@@ -27,7 +27,17 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 // Handle GET request
 if ($method === 'GET') {
-    // Retrieve all users from the database
+    // Return tuples like this: ["FLAGS", count].
+    // The FLAGS indicates browser types that were present in the user-agent.
+    // The count shows how many visits were done with this browser type.
+    //
+    // The FLAGS should be parsed like this:
+    // If E in flag, then it is Edge.
+    // Else if O in flag, then it is Opera.
+    // Else if F in flag, then it is Firefox.
+    // Else if CS in flag, then it is Chrome.
+    // Else if S in flag, then it is Safari.
+    // Else it is others.
     $conn = db_connect();
     $stmt = $conn->prepare("
       select ua, count(*) as cnt from (
