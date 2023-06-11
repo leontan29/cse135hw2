@@ -79,7 +79,7 @@ To access the site or machine:
   - Other files:
      * [General PHP routines: config.php](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/inc/config.php)
      * [DB PHP routines: db.php](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/inc/db.php)
-     * [REST API user)(https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/user.php)
+     * [REST API user](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/user.php)
      * [REST API errorweekly](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/errorweekly.php)
      * [REST API useragent](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/useragent.php)
      * [REST API visithour](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/visithour.php)
