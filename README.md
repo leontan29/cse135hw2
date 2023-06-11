@@ -64,7 +64,8 @@ To access the site or machine:
 
       3. User Agents: This pie-chart indicates which browser your
       customers are using. You may want to tune your javascript to
-      work nicely with the popular browsers.
+      work nicely with the popular browsers. <ins>This could easily be a
+      grid, but I think a pie-chart is better</ins>.
 
   - For the report, I used the Hourly Users Chart to determine when is
     the best time in the day to shutdown the machines for maintenance.
