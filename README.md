@@ -49,6 +49,8 @@ To access the site or machine:
     <em>_SESSION["is_admin"]</em>. At logout, I simply destroy the
     session.
 
+  - DB operations are protected against DB injection by the use of prepared statements.
+
   - For the dashboard, I created 3 charts:
   
       1. Hourly Users: This line-chart shows the #users on the site
@@ -68,7 +70,20 @@ To access the site or machine:
     the best time in the day to shutdown the machines for maintenance.
 
 * Source Code
-  - [login]
+  - [login](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/login.php)
+  - [logout](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/logout.php)
+  - [users](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/users.php)
+  - [index](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/index.php)
+  - [dashboard](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/dashboard.php)
+  - [The report: busystate](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/busystate.php)
+  - Other files:
+     * [General PHP routines: config.php](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/inc/config.php)
+     * [DB PHP routines: db.php](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/inc/db.php)
+     * [REST API user)(https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/user.php)
+     * [REST API errorweekly](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/errorweekly.php)
+     * [REST API useragent](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/useragent.php)
+     * [REST API visithour](https://github.com/leontan29/cse135hw2/blob/main/reporting.cse135byleon.site/public_html/api/visithour.php)
+
 
 ## HW3
 * Site Links
